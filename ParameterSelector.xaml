@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="WaveShare_Robot_Arm_Controller.ParameterSelector"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WaveShare_Robot_Arm_Controller"
+             xmlns:ControlLib="clr-namespace:ControlLib;assembly=NumericUpDown"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="800" Loaded="UserControl_Loaded">
+    <Grid x:Name="ContainerGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="BrightnessControl" Visibility="Hidden">
+            <Slider VerticalAlignment="Center" Maximum="255" Minimum="0" TickPlacement="BottomRight" TickFrequency="15" Value="0" LargeChange="15" ValueChanged="Slider_ValueChanged"/>
+            <Label Content="Brightness:" Foreground="White" HorizontalAlignment="Left" Padding="0,0,0,0" VerticalAlignment="Top" />
+        </Grid>
+        <Grid x:Name="JointControl" Grid.Column="1" Visibility="Hidden">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Label Grid.ColumnSpan="2" Content="JOINT" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Padding="0,0,0,0" Foreground="White" />
+            <RadioButton Grid.Row="1" VerticalAlignment="Center" Content="1" Foreground="#FF4E99FF" GroupName="Joints" Padding="4,-1,0,0" FlowDirection="RightToLeft" Margin="0,0,5,0" Click="RadioButton_Click" />
+            <RadioButton Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Content="2" Foreground="#FF4E99FF" GroupName="Joints" Margin="5,0,0,0" Click="RadioButton_Click" />
+            <RadioButton Grid.Row="2" VerticalAlignment="Center" Content="3" Foreground="#FF4E99FF" GroupName="Joints" FlowDirection="RightToLeft" Margin="0,0,5,0" Click="RadioButton_Click" />
+            <RadioButton Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Content="4" Foreground="#FF4E99FF" GroupName="Joints" Margin="5,0,0,0" Click="RadioButton_Click" />
+        </Grid>
+        <Grid x:Name="DegreesControl" Grid.Column="2" Visibility="Hidden">
+            <Label Content="Degrees:" Foreground="White" Margin="0,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+            <TextBox x:Name="DegreeInput" DataObject.Pasting="NumericTextBox_Pasting"  VerticalAlignment="Center" BorderBrush="#FF505050" Background="#FF1D1D1D" Foreground="White" SelectionOpacity="0.8" Margin="5,0,5,0" FontSize="16" PreviewTextInput="DegreeInput_PreviewTextInput" PreviewKeyDown="DegreeInput_PreviewKeyDown" TextChanged="DegreeInput_TextChanged" />
+        </Grid>
+        <Grid x:Name="SpeedControl" Grid.Column="3" Visibility="Hidden">
+            <Label Content="Speed:" Foreground="White" Margin="0,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+            <TextBox x:Name="SpeedInput" DataObject.Pasting="NumericTextBox_Pasting"  VerticalAlignment="Center" BorderBrush="#FF505050" Background="#FF1D1D1D" Foreground="White" SelectionOpacity="0.8" Margin="5,0,5,0" FontSize="16" PreviewTextInput="DegreeInput_PreviewTextInput" PreviewKeyDown="DegreeInput_PreviewKeyDown" TextChanged="SpeedInput_TextChanged" />
+        </Grid>
+        <Grid x:Name="AccelControl" Grid.Column="4" Visibility="Hidden">
+            <Label Content="Acceleration:" Foreground="White" Margin="0,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+            <TextBox x:Name="AccelInput" DataObject.Pasting="NumericTextBox_Pasting"  VerticalAlignment="Center" BorderBrush="#FF505050" Background="#FF1D1D1D" Foreground="White" SelectionOpacity="0.8" Margin="5,0,5,0" FontSize="16" PreviewTextInput="DegreeInput_PreviewTextInput" PreviewKeyDown="DegreeInput_PreviewKeyDown" TextChanged="AccelInput_TextChanged" />
+        </Grid>
+        <Grid x:Name="TorqueControl" Grid.Column="5" Visibility="Hidden">
+            <Label Content="Torque:" Foreground="White" Margin="0,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+            <TextBox x:Name="TorqueInput" DataObject.Pasting="NumericTextBox_Pasting"  VerticalAlignment="Center" BorderBrush="#FF505050" Background="#FF1D1D1D" Foreground="White" SelectionOpacity="0.8" Margin="5,0,5,0" FontSize="16" PreviewTextInput="DegreeInput_PreviewTextInput" PreviewKeyDown="DegreeInput_PreviewKeyDown" TextChanged="TorqueInput_TextChanged" />
+        </Grid>
+        <Grid x:Name="MilisecondsControl" Grid.Column="6" Visibility="Hidden">
+            <Label Content="Miliseconds:" Foreground="White" Margin="0,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+            <TextBox x:Name="MSInput" DataObject.Pasting="NumericTextBox_Pasting"  VerticalAlignment="Center" BorderBrush="#FF505050" Background="#FF1D1D1D" Foreground="White" SelectionOpacity="0.8" Margin="5,0,5,0" FontSize="16" PreviewTextInput="DegreeInput_PreviewTextInput" PreviewKeyDown="DegreeInput_PreviewKeyDown" TextChanged="MSInput_TextChanged" />
+        </Grid>
+    </Grid>
+</UserControl>

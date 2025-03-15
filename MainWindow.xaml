@@ -1,0 +1,35 @@
+﻿<Window x:Class="WaveShare_Robot_Arm_Controller.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WaveShare_Robot_Arm_Controller"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+    <Grid Background="#FF2B2B2B">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBox x:Name="json_box" Grid.Row="2" Grid.RowSpan="4" Grid.ColumnSpan="6" Grid.Column="0" Margin="10,40,10,60" Background="#FF1A1A1A" TextWrapping="Wrap" AcceptsReturn="True" Foreground="White" VerticalScrollBarVisibility="Auto" />
+        <Button Content="SEND INSTRUCTIONS" Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="2" Margin="110,20,10,10" FontSize="10" Background="#FF717171" Foreground="White" BorderBrush="#FF525252" Click="Button_Click" />
+        <Label Content="IP Address:" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="#FF8E8E8E" />
+        <TextBox x:Name="ipfield" Grid.Column="1" VerticalAlignment="Center" Background="#FF1D1D1D" BorderBrush="#FF505050" Foreground="White" />
+        <Label Grid.Column="3" Content="Command:" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Foreground="#FF8E8E8E" VerticalAlignment="Top" Margin="0,10,0,0" />
+        <ComboBox x:Name="CommandBox" Grid.Column="4" Grid.ColumnSpan="2" VerticalAlignment="Top" Margin="10,10,10,0" FontSize="14" Background="White" IsTextSearchEnabled="False" SelectionChanged="CommandBox_SelectionChanged" />
+        <Button x:Name="AddCmdBtn" Grid.Column="5" VerticalAlignment="Bottom" Content="Add Command" HorizontalAlignment="Right" Margin="0,0,10,5" Padding="5,5,5,5" Click="AddCmdBtn_Click" />
+        <local:ParameterSelector x:Name="PSelector" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4" Margin="0,5,0,40" Grid.RowSpan="2" Background="#33000000" />
+    </Grid>
+</Window>
