@@ -72,13 +72,23 @@ namespace WaveShare_Robot_Arm_Controller
 
 					result = CommandDefinitions.GetJsonCommandByName(methodName, paramValues);
 
-					json_box.AppendText(result.RawOutput + Environment.NewLine);
+					if (json_box.Text != string.Empty)
+					{
+						json_box.AppendText(Environment.NewLine);
+					}
+
+					json_box.AppendText(result.RawOutput);
 				}
 				else
 				{
 					JsonCommand x = CommandDefinitions.GetJsonCommandByName(methodName);
 
-					json_box.AppendText(x.RawOutput + Environment.NewLine);
+					if (json_box.Text != string.Empty)
+					{
+						json_box.AppendText(Environment.NewLine);
+					}
+
+					json_box.AppendText(x.RawOutput);
 				}
 			}
 		}
