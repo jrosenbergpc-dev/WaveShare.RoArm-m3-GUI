@@ -123,5 +123,16 @@ namespace WaveShare_Robot_Arm_Controller
 				}
 			}
 		}
+
+		private void ClearAllButton_Click(object sender, RoutedEventArgs e)
+		{
+			json_box.Text = string.Empty;
+		}
+
+		private async void EmergencyStopButton_Click(object sender, RoutedEventArgs e)
+		{
+			string result = await GetAsync($"http://{ipfield.Text}/js?json={CommandDefinitions.EmergencyStop().RawOutput}");
+			MessageBox.Show("Sent Emergency Stop Command!!");
+		}
 	}
 }

@@ -117,7 +117,29 @@ namespace WaveShare_Robot_Arm_Controller
 		//force textbox to only accept number in floating point format 0.000000000
 		private void DegreeInput_PreviewTextInput(object sender, TextCompositionEventArgs e)
 		{
-			e.Handled = !IsTextAllowed((sender as TextBox).Text, e.Text);
+			//e.Handled = !IsTextAllowed((sender as TextBox).Text, e.Text);
+			// Allow only numbers, decimal point, and negative sign
+			TextBox textBox = sender as TextBox;
+			if (textBox == null) return;
+
+			// Simulate the new text as if input is accepted
+			string newText = textBox.Text.Insert(textBox.SelectionStart, e.Text);
+
+			// Ensure valid numeric format
+			if (!Regex.IsMatch(newText, @"^-?\d*\.?\d*$"))
+			{
+				e.Handled = true;
+				return;
+			}
+
+			// Ensure value stays within -360.0 to 360.0
+			if (double.TryParse(newText, out double result))
+			{
+				if (result < -360.0 || result > 360.0)
+				{
+					e.Handled = true;
+				}
+			}
 		}
 
 		private void DegreeInput_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -133,7 +155,9 @@ namespace WaveShare_Robot_Arm_Controller
 			if (e.DataObject.GetDataPresent(typeof(string)))
 			{
 				string pastedText = (string)e.DataObject.GetData(typeof(string));
-				if (!IsTextAllowed((sender as TextBox).Text, pastedText))
+				if (!Regex.IsMatch(pastedText, @"^-?\d*\.?\d*$") ||
+					!double.TryParse(pastedText, out double result) ||
+					result < -360.0 || result > 360.0)
 				{
 					e.CancelCommand();
 				}
@@ -204,27 +228,57 @@ namespace WaveShare_Robot_Arm_Controller
 
 		private void DegreeInput_TextChanged(object sender, TextChangedEventArgs e)
 		{
-			_degrees = Double.Parse(DegreeInput.Text);
+			try
+			{
+				_degrees = Double.Parse(DegreeInput.Text);
+			}
+			catch (Exception)
+			{
+			}
 		}
 
 		private void SpeedInput_TextChanged(object sender, TextChangedEventArgs e)
 		{
-			_speed = Double.Parse(SpeedInput.Text);
+			try
+			{
+				_speed = Double.Parse(SpeedInput.Text);
+			}
+			catch (Exception)
+			{
+			}
 		}
 
 		private void AccelInput_TextChanged(object sender, TextChangedEventArgs e)
 		{
-			_accel = Double.Parse(AccelInput.Text);
+			try
+			{
+				_accel = Double.Parse(AccelInput.Text);
+			}
+			catch (Exception)
+			{
+			}
 		}
 
 		private void TorqueInput_TextChanged(object sender, TextChangedEventArgs e)
 		{
-			_torque = Double.Parse(TorqueInput.Text);
+			try
+			{
+				_torque = Double.Parse(TorqueInput.Text);
+			}
+			catch (Exception)
+			{
+			}
 		}
 
 		private void MSInput_TextChanged(object sender, TextChangedEventArgs e)
 		{
-			_miliseconds = Int32.Parse(MSInput.Text);
+			try
+			{
+				_miliseconds = Int32.Parse(MSInput.Text);
+			}
+			catch (Exception)
+			{
+			}
 		}
 	}
 }
